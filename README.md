@@ -13,7 +13,7 @@
 
 ---
 
-## 📌 Abstract
+##  Abstract
 This project demonstrates how to repurpose an old laptop into a Linux-based Wi-Fi router. 
 It uses a USB Wi-Fi adapter, hostapd, dnsmasq, and iptables to provide network sharing, 
 DHCP/DNS services, and firewall/NAT rules. For enhanced privacy, Unbound with DNS-over-TLS (DoT) 
@@ -21,7 +21,7 @@ is integrated to encrypt DNS queries.
 
 ---
 
-## 🎯 Objectives
+##  Objectives
 - Convert an old laptop into a Wi-Fi router and access point.
 - Provide DHCP and DNS services for clients.
 - Implement firewall and NAT rules for secure routing.
@@ -30,7 +30,7 @@ is integrated to encrypt DNS queries.
 
 ---
 
-## 🛠 Tools and Technologies Used
+##  Tools and Technologies Used
 - **OS**: Ubuntu Server 22.04 LTS (CLI-only)
 - **Wi-Fi Driver**: Realtek rtl8188fu via DKMS
 - **hostapd**: For Wi-Fi AP configuration
@@ -40,7 +40,7 @@ is integrated to encrypt DNS queries.
 - **SSH**: Remote management
 
 ---
-## 📂 Repository Structure
+##  Repository Structure
 ```bash
 .
 ├── README.md                # Main documentation
@@ -58,14 +58,14 @@ is integrated to encrypt DNS queries.
 │   └── troubleshooting.md   # Errors & fixes
 ```
 
-## 💻 Hardware Setup
+##  Hardware Setup
 - **Laptop**: Old laptop with working Ethernet port
 - **Wi-Fi Adapter**: Realtek RTL8188FTV (USB)
 - **Ethernet**: Connected to upstream Internet source
 
 ---
 
-## ⚙️ System Architecture
+##  System Architecture
 - **eth0** → Internet connection (Ethernet)
 - **wlan0** → Wireless Access Point for clients
 - NAT and firewall rules secure traffic flow.
@@ -73,7 +73,7 @@ is integrated to encrypt DNS queries.
 
 ---
 
-## 🚀 Implementation Steps
+##  Implementation Steps
 1. Install Realtek Wi-Fi Driver (rtl8188fu)
 2. Enable IP Forwarding (`net.ipv4.ip_forward=1`)
 3. Configure **hostapd** for Wi-Fi AP
@@ -83,7 +83,7 @@ is integrated to encrypt DNS queries.
 
 ---
 
-## 🧰 Troubleshooting
+##  Troubleshooting
 - Ensure DHCP client (`isc-dhcp-client`) is installed.
 - Bring up missing network interfaces with `ip link set eth0 up`.
 - Start DBus if hostapd/dnsmasq fail.
@@ -91,7 +91,7 @@ is integrated to encrypt DNS queries.
 
 ---
 
-## 🔒 Firewall & DNS Example
+##  Firewall & DNS Example
 ```bash
 # Enable IP forwarding
 sudo sysctl -w net.ipv4.ip_forward=1
@@ -111,7 +111,7 @@ no-resolv
 
 ---
 
-## ✅ Testing and Results
+##  Testing and Results
 - Devices connected successfully to the new SSID.
 - Internet accessible via laptop-router.
 - DNS resolution via dnsmasq + Unbound (DoT) worked correctly.
@@ -119,7 +119,7 @@ no-resolv
 
 ---
 
-## 🔮 Future Scope
+##  Future Scope
 - Add VPN server (WireGuard/OpenVPN)
 - IDS/IPS integration (Snort/Suricata)
 - Web-based GUI for easier management
@@ -127,14 +127,14 @@ no-resolv
 
 ---
 
-## 🏁 Conclusion
+##  Conclusion
 This project proves that an old laptop can be repurposed into a fully functional Linux router. 
 With hostapd, dnsmasq, iptables, and Unbound (DNS-over-TLS), it offers a secure and privacy-focused 
 networking solution, acting as a low-cost alternative to commercial routers.
 
 ---
 
-## 📚 References
+##  References
 1. [Router-DNS GitHub Repository](https://github.com/siddhantkadam/router-dns)
 2. [hostapd Documentation](https://w1.fi/hostapd/)
 3. [dnsmasq Documentation](http://www.thekelleys.org.uk/dnsmasq/doc.html)
