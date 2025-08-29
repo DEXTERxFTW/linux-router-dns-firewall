@@ -134,7 +134,7 @@ networking solution, acting as a low-cost alternative to commercial routers.
 ---
 
 ##  References
-1. [Router-DNS GitHub Repository](https://github.com/siddhantkadam/router-dns)
+1. [Router-DNS GitHub Repository](https://github.com/cyberpaglu/linux-router-dns-firewall)
 2. [hostapd Documentation](https://w1.fi/hostapd/)
 3. [dnsmasq Documentation](http://www.thekelleys.org.uk/dnsmasq/doc.html)
 4. [iptables Manual](https://ipset.netfilter.org/iptables.man.html)
