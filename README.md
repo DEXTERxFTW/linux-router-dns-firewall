@@ -44,7 +44,6 @@ is integrated to encrypt DNS queries.
 ```bash
 .
 ├── README.md                # Main documentation
-├── README.txt               # Plain text version
 ├── configs/
 │   ├── hostapd.conf         # Wi-Fi AP config
 │   ├── dnsmasq.conf         # DHCP & DNS config
