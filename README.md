@@ -62,12 +62,12 @@ A detailed **report with errors, fixes, and final working setup** is available i
 ---
 
 ##  Repository Structure
-
+```
 /docs → Report, Diagrams, Notes
 /configs → Hostapd, Dnsmasq, Netplan, Iptables configs
 /scripts → Automation scripts for firewall/DNS
 README.md → Project overview
-
+```
 ---
 
 ##  License
