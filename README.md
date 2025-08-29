@@ -54,7 +54,7 @@ is integrated to encrypt DNS queries.
 │   ├── firewall.sh          # NAT + firewall rules
 │   ├── router-setup.sh      # Start all services
 ├── docs/
-│   ├── project-report.pdf   # Full research report
+│   ├── Report.pdf   # Full research report
 │   └── troubleshooting.md   # Errors & fixes
 ```
 
