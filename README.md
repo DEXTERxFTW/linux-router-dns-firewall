@@ -1,75 +1,129 @@
-# Linux-Based Wireless Router with Custom DNS & Firewall
+# From Laptop to Router: A Practical Project on Network Sharing and DNS Management
 
-##  Project Overview
-This project demonstrates how an **old laptop** was converted into a fully functional **Linux-based Wi-Fi Access Point** with a **custom DNS server** and **firewall rules**.  
-Since the **inbuilt Wi-Fi card of the laptop was not working**, we connected an **external USB Wi-Fi adapter (Realtek RTL8188FTV)** to enable wireless access point functionality.  
-It was built on **Ubuntu Server (CLI-only)** and includes step-by-step configuration of **network drivers, DHCP, Hostapd, Dnsmasq, and Iptables firewall**.
-The aim was to repurpose legacy hardware into a **secure and educational networking appliance**, gaining hands-on experience with system administration, networking, and troubleshooting.
+## Authors
+- **Nihal Pirjade**
+  - Email: nihalpirjade.clg@gmail.com
+  - LinkedIn: [linkedin.com/in/nihal-pirjade](https://www.linkedin.com/in/nihal-pirjade)
+  - GitHub: [github.com/DEXTERxFTW](https://github.com/DEXTERxFTW)
 
----
-
-##  Features
-- Wireless Access Point using **Hostapd**
-- DHCP & DNS services with **Dnsmasq**
-- Custom **DNS blocking & redirection**
-- **Firewall & NAT** setup using Iptables
-- Logs of **errors and troubleshooting**
-- Repurposed old hardware into a **working router**
+- **Siddhant Kadam**
+  - Email: sidddhantkadam@gmail.com
+  - LinkedIn: [linkedin.com/in/siddhant-kadam-895b2b237](https://www.linkedin.com/in/siddhant-kadam-895b2b237)
+  - GitHub: [github.com/smartytinker](https://github.com/smartytinker)
 
 ---
 
-##  Tools & Technologies
-- **Ubuntu Server 24.04 LTS (CLI-only)**
-- **Hostapd** – Wireless Access Point service
-- **Dnsmasq** – Lightweight DNS & DHCP server
-- **Iptables** – Firewall and NAT
-- **Systemd / Netplan** – Network configuration
+## 📌 Abstract
+This project demonstrates how to repurpose an old laptop into a Linux-based Wi-Fi router. 
+It uses a USB Wi-Fi adapter, hostapd, dnsmasq, and iptables to provide network sharing, 
+DHCP/DNS services, and firewall/NAT rules. For enhanced privacy, Unbound with DNS-over-TLS (DoT) 
+is integrated to encrypt DNS queries. 
 
 ---
 
-##  Setup Process (Simplified)
-1. Installed Ubuntu Server 24.04 LTS (CLI)  
-2. Resolved **ethernet driver issues** and installed missing packages  
-3. Installed and configured `hostapd` for Wi-Fi AP  
-4. Configured `dnsmasq` for DHCP + custom DNS  
-5. Applied **iptables firewall rules** for NAT and traffic filtering  
-6. Documented troubleshooting for errors like:  
-   - *"Failed to connect to bus"*  
-   - *"Network unreachable"*  
-   - DHCP not starting on boot  
-   - Wi-Fi stuck at *"Obtaining IP"*  
+## 🎯 Objectives
+- Convert an old laptop into a Wi-Fi router and access point.
+- Provide DHCP and DNS services for clients.
+- Implement firewall and NAT rules for secure routing.
+- Run entirely on Ubuntu Server (CLI-only).
+- Integrate DNS-over-TLS for secure DNS queries.
 
 ---
 
-##  Documentation
-A detailed **report with errors, fixes, and final working setup** is available in this repository.  
-👉 [Read the Full Report](./Report.md)  
+## 🛠 Tools and Technologies Used
+- **OS**: Ubuntu Server 22.04 LTS (CLI-only)
+- **Wi-Fi Driver**: Realtek rtl8188fu via DKMS
+- **hostapd**: For Wi-Fi AP configuration
+- **dnsmasq**: DHCP and DNS services
+- **iptables**: Firewall and NAT
+- **Unbound + DNS-over-TLS**: Secure DNS resolution
+- **SSH**: Remote management
 
 ---
 
-##  Contributors
-- **Nihal Pirjade**  
-- **SmartyTinker**   
+## 💻 Hardware Setup
+- **Laptop**: Old laptop with working Ethernet port
+- **Wi-Fi Adapter**: Realtek RTL8188FTV (USB)
+- **Ethernet**: Connected to upstream Internet source
 
 ---
 
-##  Future Improvements
-- Add **Web UI** for configuration  
-- Implement **Suricata / Snort IDS** for intrusion detection  
-- Automate firewall setup with **scripts**  
-- Containerize services with **Docker**  
+## ⚙️ System Architecture
+- **eth0** → Internet connection (Ethernet)
+- **wlan0** → Wireless Access Point for clients
+- NAT and firewall rules secure traffic flow.
+- Clients get IPs via dnsmasq and route traffic via eth0.
 
 ---
 
-##  Repository Structure
+## 🚀 Implementation Steps
+1. Install Realtek Wi-Fi Driver (rtl8188fu)
+2. Enable IP Forwarding (`net.ipv4.ip_forward=1`)
+3. Configure **hostapd** for Wi-Fi AP
+4. Configure **dnsmasq** for DHCP + DNS
+5. Configure **iptables** for NAT + firewall
+6. Integrate **Unbound + DNS-over-TLS**
+
+---
+
+## 🧰 Troubleshooting
+- Ensure DHCP client (`isc-dhcp-client`) is installed.
+- Bring up missing network interfaces with `ip link set eth0 up`.
+- Start DBus if hostapd/dnsmasq fail.
+- Verify firewall rules with `iptables -L`.
+
+---
+
+## 🔒 Firewall & DNS Example
+```bash
+# Enable IP forwarding
+sudo sysctl -w net.ipv4.ip_forward=1
+
+# Firewall rules
+sudo iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE
+sudo iptables -A FORWARD -i eth0 -o wlan0 -m state --state RELATED,ESTABLISHED -j ACCEPT
+sudo iptables -A FORWARD -i wlan0 -o eth0 -j ACCEPT
+
+# Sample dnsmasq.conf
+interface=wlan0
+dhcp-range=192.168.10.10,192.168.10.50,12h
+server=1.1.1.1
+server=8.8.8.8
+no-resolv
 ```
-/docs → Report, Diagrams, Notes
-/configs → Hostapd, Dnsmasq, Netplan, Iptables configs
-/scripts → Automation scripts for firewall/DNS
-README.md → Project overview
-```
+
 ---
 
-##  License
-This project is open-source under the **MIT License**.  
-Feel free to use and improve it!  
+## ✅ Testing and Results
+- Devices connected successfully to the new SSID.
+- Internet accessible via laptop-router.
+- DNS resolution via dnsmasq + Unbound (DoT) worked correctly.
+- Traffic properly NAT-ed and encrypted DNS confirmed.
+
+---
+
+## 🔮 Future Scope
+- Add VPN server (WireGuard/OpenVPN)
+- IDS/IPS integration (Snort/Suricata)
+- Web-based GUI for easier management
+- Port setup to Raspberry Pi for compact solution
+
+---
+
+## 🏁 Conclusion
+This project proves that an old laptop can be repurposed into a fully functional Linux router. 
+With hostapd, dnsmasq, iptables, and Unbound (DNS-over-TLS), it offers a secure and privacy-focused 
+networking solution, acting as a low-cost alternative to commercial routers.
+
+---
+
+## 📚 References
+1. [Router-DNS GitHub Repository](https://github.com/siddhantkadam/router-dns)
+2. [hostapd Documentation](https://w1.fi/hostapd/)
+3. [dnsmasq Documentation](http://www.thekelleys.org.uk/dnsmasq/doc.html)
+4. [iptables Manual](https://ipset.netfilter.org/iptables.man.html)
+5. [Ubuntu Server Guide](https://ubuntu.com/server/docs)
+6. [Realtek RTL8188fu Driver](https://github.com/kelebek333/rtl8188fu)
+7. [Unbound DNS Resolver](https://nlnetlabs.nl/documentation/unbound/)
+8. [RFC 7858 - DNS-over-TLS](https://datatracker.ietf.org/doc/html/rfc7858)
+9. [RFC 8484 - DNS-over-HTTPS](https://datatracker.ietf.org/doc/html/rfc8484)
