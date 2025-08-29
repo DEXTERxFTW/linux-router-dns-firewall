@@ -1,6 +1,6 @@
 # Linux-Based Wireless Router with Custom DNS & Firewall
 
-## 📌 Project Overview
+##  Project Overview
 This project demonstrates how an **old laptop** was converted into a fully functional **Linux-based Wi-Fi Access Point** with a **custom DNS server** and **firewall rules**.  
 Since the **inbuilt Wi-Fi card of the laptop was not working**, we connected an **external USB Wi-Fi adapter (Realtek RTL8188FTV)** to enable wireless access point functionality.  
 It was built on **Ubuntu Server (CLI-only)** and includes step-by-step configuration of **network drivers, DHCP, Hostapd, Dnsmasq, and Iptables firewall**.
@@ -8,7 +8,7 @@ The aim was to repurpose legacy hardware into a **secure and educational network
 
 ---
 
-## ⚙️ Features
+##  Features
 - Wireless Access Point using **Hostapd**
 - DHCP & DNS services with **Dnsmasq**
 - Custom **DNS blocking & redirection**
@@ -18,7 +18,7 @@ The aim was to repurpose legacy hardware into a **secure and educational network
 
 ---
 
-## 🛠️ Tools & Technologies
+##  Tools & Technologies
 - **Ubuntu Server 24.04 LTS (CLI-only)**
 - **Hostapd** – Wireless Access Point service
 - **Dnsmasq** – Lightweight DNS & DHCP server
@@ -27,7 +27,7 @@ The aim was to repurpose legacy hardware into a **secure and educational network
 
 ---
 
-## 🚀 Setup Process (Simplified)
+##  Setup Process (Simplified)
 1. Installed Ubuntu Server 24.04 LTS (CLI)  
 2. Resolved **ethernet driver issues** and installed missing packages  
 3. Installed and configured `hostapd` for Wi-Fi AP  
@@ -41,19 +41,19 @@ The aim was to repurpose legacy hardware into a **secure and educational network
 
 ---
 
-## 📖 Documentation
+##  Documentation
 A detailed **report with errors, fixes, and final working setup** is available in this repository.  
 👉 [Read the Full Report](./Report.md)  
 
 ---
 
-## 👥 Contributors
+##  Contributors
 - **Nihal Pirjade**  
 - **SmartyTinker**   
 
 ---
 
-## 🔮 Future Improvements
+##  Future Improvements
 - Add **Web UI** for configuration  
 - Implement **Suricata / Snort IDS** for intrusion detection  
 - Automate firewall setup with **scripts**  
@@ -61,7 +61,7 @@ A detailed **report with errors, fixes, and final working setup** is available i
 
 ---
 
-## 📂 Repository Structure
+##  Repository Structure
 
 /docs → Report, Diagrams, Notes
 /configs → Hostapd, Dnsmasq, Netplan, Iptables configs
@@ -70,6 +70,6 @@ README.md → Project overview
 
 ---
 
-## 📜 License
+##  License
 This project is open-source under the **MIT License**.  
 Feel free to use and improve it!  
