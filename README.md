@@ -40,6 +40,23 @@ is integrated to encrypt DNS queries.
 - **SSH**: Remote management
 
 ---
+## 📂 Repository Structure
+```bash
+.
+├── README.md                # Main documentation
+├── README.txt               # Plain text version
+├── configs/
+│   ├── hostapd.conf         # Wi-Fi AP config
+│   ├── dnsmasq.conf         # DHCP & DNS config
+│   ├── unbound.conf         # Unbound + DoT config
+├── scripts/
+│   ├── setup-driver.sh      # Install Realtek Wi-Fi driver
+│   ├── firewall.sh          # NAT + firewall rules
+│   ├── router-setup.sh      # Start all services
+├── docs/
+│   ├── project-report.pdf   # Full research report
+│   └── troubleshooting.md   # Errors & fixes
+```
 
 ## 💻 Hardware Setup
 - **Laptop**: Old laptop with working Ethernet port
